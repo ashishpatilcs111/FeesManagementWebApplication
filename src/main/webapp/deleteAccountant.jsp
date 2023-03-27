@@ -98,7 +98,6 @@
 				<li><a href="<%=request.getContextPath() %>/listAccountant.jsp">List Accountant</a></li>
 				<li><a href="<%=request.getContextPath() %>/updateAccountants.jsp">Update</a></li>
 				<li><a href="<%=request.getContextPath() %>/deleteAccountant.jsp">Delete</a></li>
-				<li><a href="accountantDashborad.jsp"> <button class="btn btn-switch">Switch To Accountant</button></a></li>
 				<li><form action="<%=request.getContextPath() %>/loginAuthentication?action=logout" method="post">
 						<input type="hidden" name="logout" />
 						<button class="btn">logout</button>
@@ -106,7 +105,7 @@
 			</ul>
 		</div>
 		<div class="main">
-			<h1>ADD ACCOUNTANT</h1>
+			<h1>DELETE ACCOUNTANT</h1>
 			<form class="form" action="<%=request.getContextPath() %>/CRUDAccountant?action=deleteAccountant" method="post">
 				<input type="text" name="name" placeholder="Enter Name" />
 				<button class="add-data">DELETE ACCOUNTANT</button>

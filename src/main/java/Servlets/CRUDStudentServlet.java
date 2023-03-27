@@ -1,10 +1,8 @@
 package Servlets;
 
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -16,20 +14,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import Beans.jdbc;
 import Beans.myConn;
 
 /**
- * Servlet implementation class addDataServlet
+ * Servlet implementation class StudentServlet
  */
-@WebServlet("/CRUDAccountant")
-public class CRUDAccountant extends HttpServlet {
+@WebServlet("/CRUDStudentServlet")
+public class CRUDStudentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CRUDAccountant() {
+    public CRUDStudentServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -57,26 +54,26 @@ public class CRUDAccountant extends HttpServlet {
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}
 		switch(action) {
-		case "addAccountant":
+		case "addStudent":
 
 			String name = request.getParameter("name");
 			String email = request.getParameter("email");
 			String contact = request.getParameter("contact");
-			String username = request.getParameter("username");
-			String password = request.getParameter("password");
+			String roll = request.getParameter("rollNumber");
+			String feesDues = request.getParameter("fees");
 			
 			try {
 				
 				con = mycon.getConn();
-				String qr = "insert into Accountants(name,email,contact,username,password) values(?,?,?,?,?);";				
+				String qr = "insert into students(name,email,contact,roll, fees_dues) values(?,?,?,?,?);";				
 				PreparedStatement pt = con.prepareStatement(qr);				
 				pt.setString(1, name);
 				pt.setString(2, email);
 				pt.setString(3, contact);
-				pt.setString(4, username);
-				pt.setString(5, password);				
+				pt.setString(4, roll);
+				pt.setString(5, feesDues);				
 				pt.executeUpdate();				
-				request.getRequestDispatcher("addAccountant.jsp").forward(request, response);				
+				request.getRequestDispatcher("accountantDashborad.jsp").forward(request, response);				
 				pt.close();
 				con.close();				
 				}
@@ -84,25 +81,25 @@ public class CRUDAccountant extends HttpServlet {
 					e.printStackTrace();
 				}
 			break;
-
-		case "updateAccountant":
+			
+		case "updateStudent":
 			String name1	 = request.getParameter("name");
 			String email1 = request.getParameter("email");
 			String contact1 = request.getParameter("contact");
-			String username1 = request.getParameter("username");
-			String password1 = request.getParameter("password");
+			String roll1 = request.getParameter("roll");
+			String fees1 = request.getParameter("fees");
 			
 			try {			
 				con = mycon.getConn();
-				String qr = "update Accountants set email=?, contact=?, username=?, password=? where name=?;";				
+				String qr = "update students set email=?, contact=?, roll=?, fees_dues=? where name=?;";				
 				PreparedStatement pt = con.prepareStatement(qr);			
 				pt.setString(1, email1);
 				pt.setString(2, contact1);
-				pt.setString(3, username1);
-				pt.setString(4, password1);
+				pt.setString(3, roll1);
+				pt.setString(4, fees1);
 				pt.setString(5, name1);			
 				pt.executeUpdate();				
-				request.getRequestDispatcher("updateAccountants.jsp").forward(request, response);
+				request.getRequestDispatcher("accountantDashborad.jsp").forward(request, response);
 				pt.close();
 				con.close();
 				}
@@ -111,26 +108,25 @@ public class CRUDAccountant extends HttpServlet {
 				}
 			break;
 			
-		case "deleteAccountant":
+		case "deleteStudent":
+			String name3 = request.getParameter("name");
 			
-			String id = request.getParameter("id");		
 			try {			
 				con = mycon.getConn();
-				String qr = "delete from Accountants where id=?;";				
+				String qr = "delete from students where name=?;";				
 				PreparedStatement pt = con.prepareStatement(qr);				
-				pt.setString(1, id);				
+				pt.setString(1, name3);				
 				pt.executeUpdate();				
-				request.getRequestDispatcher("listAccountant.jsp").include(request, response);
-				out.println("entered into delete");
+				request.getRequestDispatcher("accountantDashborad.jsp").forward(request, response);				
 				pt.close();
-				con.close();
+				con.close();	
 				}
 				catch(Exception e) {
 					e.printStackTrace();
 				}
 			break;
 		}
-		
+
 	}
 
 }

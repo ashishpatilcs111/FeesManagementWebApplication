@@ -93,27 +93,25 @@
 		<div class="navbar">
 			<img height="80px" alt="logo" src="https://cutewallpaper.org/24/admin-png/admin-png-images-transparent-free-download-pngmartcom.png" />
 			<ul>
-				<li><a href="<%=request.getContextPath() %>/HomePage.jsp">Home</a></li>
-				<li><a href="<%=request.getContextPath() %>/addAccountant.jsp">Add Accountant</a></li>
-				<li><a href="<%=request.getContextPath() %>/listAccountant.jsp">List Accountant</a></li>
-				<li><a href="<%=request.getContextPath() %>/updateAccountants.jsp">Update</a></li>
-				<li><a href="<%=request.getContextPath() %>/deleteAccountant.jsp">Delete</a></li>
+				<li><a href="<%=request.getContextPath() %>/accountantDashborad.jsp">List Student</a></li>
+				<li><a href="<%=request.getContextPath() %>/addStudent.jsp">Add Student</a></li>
+				<li><a href="<%=request.getContextPath() %>/updateStudent.jsp">Update</a></li>
+				<li><a href="<%=request.getContextPath() %>/deleteStudent.jsp">Delete</a></li>
 				<li><form action="<%=request.getContextPath() %>/loginAuthentication?action=logout" method="post">
 						<input type="hidden" name="logout" />
 						<button class="btn">logout</button>
-					</form></li>
-			</ul>
+					</form></li></ul>
 		</div>
 		<div class="main">
-			<h1>UPDATE ACCOUNTANT</h1>
+			<h1>UPDATE STUDENT</h1>
 			<h2>Enter name whose data we want to update</h2>
-			<form class="form" action="<%=request.getContextPath() %>/CRUDAccountant?action=updateAccountant" method="post">
+			<form class="form" action="<%=request.getContextPath() %>/CRUDStudentServlet?action=updateStudent" method="post">
 				<input type="text" name="name" placeholder="Enter Name" />
 				<input type="email" name="email" placeholder="Enter E-Mail" />	
 				<input type="text" name="contact" placeholder="Enter Contact Number" />
-				<input type="text" name="username" placeholder="Enter Username" />
-				<input type="password" name="password" placeholder="Enter Password" />
-				<button class="add-data">UPDATE ACCOUNTANT</button>
+				<input type="text" name="roll" placeholder="Enter Roll Number" />
+				<input type="text" name="fees" placeholder="Enter Fees Dues YES/NO" />
+				<button class="add-data">UPDATE STUDENT</button>
 			</form>
 		</div>
 	</div>

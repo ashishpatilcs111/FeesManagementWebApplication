@@ -143,6 +143,13 @@ public class loginAuthentication extends HttpServlet {
 				}
 			break;
 			
+			
+		case "accountantlogout":
+			out.println("entered");
+			request.getSession().invalidate();
+			request.getRequestDispatcher("index.jsp").forward(request, response);
+			break;
+			
 		}
 
 	}

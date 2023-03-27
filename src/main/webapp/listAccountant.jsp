@@ -60,7 +60,7 @@
 	.heading{
 		font-size: 100px;
 	}
-	table{
+	table,tr,td{
 		font-size: 20px;
 		color: black;
 		background-color: white;
@@ -79,7 +79,6 @@
 				<li><a href="<%=request.getContextPath() %>/listAccountant.jsp">List Accountant</a></li>
 				<li><a href="<%=request.getContextPath() %>/updateAccountants.jsp">Update</a></li>
 				<li><a href="<%=request.getContextPath() %>/deleteAccountant.jsp">Delete</a></li>
-				<li><a href="accountantDashborad.jsp"> <button class="btn btn-switch">Switch To Accountant</button></a></li>
 				<li><form action="<%=request.getContextPath() %>/loginAuthentication?action=logout" method="post">
 						<input type="hidden" name="logout" />
 						<button class="btn">logout</button>
@@ -87,26 +86,27 @@
 			</ul>
 		</div>
 		<div class="main">
-			<h1>Lists ACCOUNTANT</h1>
 			<br/>
 		<% myConn mycon = new myConn();
 		try{
 			
 			Connection con = mycon.getConn();
 			Statement st = con.createStatement();				
-			ResultSet rs = st.executeQuery("select * from accountants;");				
+			ResultSet rs = st.executeQuery("select * from accountants;");	
 			out.println("<h1>" + "List Of Accountants"+ "</h1>");
-			out.println("<table>");				
-			while(rs.next()) {	
+			out.println("<table>");	
+			out.println("<tr><td> ID </td><td> NAME </td><td> EMAIL </td><td> CONTACT </td><td> USERNAME </td><td> PASSWORD </td></tr>");
+			while(rs.next()) {
+				String id = rs.getString("id");
 				 out.println("<tr><td>" + rs.getInt("id") + "</td>");
 				 out.println("<td>" + rs.getString("name")+ "</td>");
 				 out.println("<td>" + rs.getString("email")+ "</td>");
 				 out.println("<td>" + rs.getString("contact")+ "</td>");
 				 out.println("<td>" + rs.getString("username")+ "</td>");
-				 out.println("<td>" + rs.getString("password")+ "</td></tr>");					
+				 out.println("<td>" + rs.getString("password")+ "</td>");	
+				 out.println("<td><a href=CRUDAccountant?id="+id+"&action=deleteAccountant>Delete</a></td></tr>");
 			}
 			out.println("</table>");
-			out.println("<br/><b><a href='HomePage.jsp'>Back to HomePage</a></b>");
 			st.close();
 			con.close();
 			}
