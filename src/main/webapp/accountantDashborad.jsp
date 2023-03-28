@@ -16,13 +16,19 @@
 	box-sizing: border-box;
 	}
 	
-	.container{
-	height: 100vh;
-	width: 100vw;
+	body{
+	height:100vh;
+	width:100vw;
 	background-image: url('https://img.freepik.com/premium-photo/colorful-grunge-abstract-minimal-background_250469-4315.jpg');
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
+	}
+	
+	.container{
+	height: 20vh;
+	width: 100vw;
+
 	}
 	
 	.navbar{
@@ -48,14 +54,6 @@
 		border-radius: .5rem;
 	}
 	
-	.main{
-		height: 90vh;
-		width: 100vw;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		flex-direction: column;
-	}
 	
 	.heading{
 		font-size: 100px;
@@ -76,41 +74,16 @@
 			<ul>
 				<li><a href="<%=request.getContextPath() %>/accountantDashborad.jsp">List Student</a></li>
 				<li><a href="<%=request.getContextPath() %>/addStudent.jsp">Add Student</a></li>
-				<li><a href="<%=request.getContextPath() %>/updateStudent.jsp">Update</a></li>
-				<li><a href="<%=request.getContextPath() %>/deleteStudent.jsp">Delete</a></li>
 				<li><form action="<%=request.getContextPath() %>/loginAuthentication?action=logout" method="post">
 						<input type="hidden" name="logout" />
 						<button class="btn">logout</button>
 					</form></li></ul>
 		</div>
 		<div class="main">
-			<br/>
-		<% myConn mycon = new myConn();
-		try{
-			
-			Connection con = mycon.getConn();
-			Statement st = con.createStatement();				
-			ResultSet rs = st.executeQuery("select * from students;");				
-			out.println("<h1>" + "List Of Students"+ "</h1>");
-			out.println("<table>");	
-			out.println("<tr><td> ID </td><td> NAME </td><td> EMAIL </td><td> CONTACT </td><td> ROLL </td><td> FEES DUES </td></tr>");
-			while(rs.next()) {	
-				 out.println("<tr><td>" + rs.getInt("id") + "</td>");
-				 out.println("<td>" + rs.getString("name")+ "</td>");
-				 out.println("<td>" + rs.getString("email")+ "</td>");
-				 out.println("<td>" + rs.getString("contact")+ "</td>");
-				 out.println("<td>" + rs.getString("roll")+ "</td>");
-				 out.println("<td>" + rs.getString("fees_dues")+ "</td></tr>");					
-			}
-			out.println("</table>");
-			st.close();
-			con.close();
-			}
-			catch(Exception e) {
-				e.printStackTrace();
-		 	}
-		%>
-			
+				<h1>List Of Students</h1>
+				<form action="<%=request.getContextPath()%>/CRUDStudentServlet?action=listStudent" method="post">
+				<button class="btn">Show data</button>
+			</form>
 		</div>
 	</div>
 </body>

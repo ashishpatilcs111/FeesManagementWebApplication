@@ -11,6 +11,7 @@ import java.sql.Statement;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -70,15 +71,18 @@ public class loginAuthentication extends HttpServlet {
 					if(username.equals(rs.getString("username")) && password.equals(rs.getString("password")))
 					{
 						request.getSession().invalidate();
-						HttpSession newSession = request.getSession(true);
-						newSession.setMaxInactiveInterval(300);
-						newSession.setAttribute("username", username);
+						HttpSession session = request.getSession();
+						session.setAttribute("user", "Pankaj");
+						session.setMaxInactiveInterval(30*60);
+						Cookie userName = new Cookie("user", username);
+						userName.setMaxAge(30*60);
+						response.addCookie(userName);
 						request.getRequestDispatcher("HomePage.jsp").forward(request, response);
 					}
 				}
 				
 				request.getRequestDispatcher("index.jsp").forward(request, response);
-				
+				  
 				st.close();
 				con.close();
 				}

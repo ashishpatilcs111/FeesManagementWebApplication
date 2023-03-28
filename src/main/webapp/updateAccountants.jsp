@@ -96,8 +96,6 @@
 				<li><a href="<%=request.getContextPath() %>/HomePage.jsp">Home</a></li>
 				<li><a href="<%=request.getContextPath() %>/addAccountant.jsp">Add Accountant</a></li>
 				<li><a href="<%=request.getContextPath() %>/listAccountant.jsp">List Accountant</a></li>
-				<li><a href="<%=request.getContextPath() %>/updateAccountants.jsp">Update</a></li>
-				<li><a href="<%=request.getContextPath() %>/deleteAccountant.jsp">Delete</a></li>
 				<li><form action="<%=request.getContextPath() %>/loginAuthentication?action=logout" method="post">
 						<input type="hidden" name="logout" />
 						<button class="btn">logout</button>

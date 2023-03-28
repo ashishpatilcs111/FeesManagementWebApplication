@@ -95,8 +95,6 @@
 			<ul>
 				<li><a href="<%=request.getContextPath() %>/accountantDashborad.jsp">List Student</a></li>
 				<li><a href="<%=request.getContextPath() %>/addStudent.jsp">Add Student</a></li>
-				<li><a href="<%=request.getContextPath() %>/updateStudent.jsp">Update</a></li>
-				<li><a href="<%=request.getContextPath() %>/deleteStudent.jsp">Delete</a></li>
 				<li><form action="<%=request.getContextPath() %>/loginAuthentication?action=logout" method="post">
 						<input type="hidden" name="logout" />
 						<button class="btn">logout</button>

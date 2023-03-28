@@ -16,13 +16,19 @@
 	box-sizing: border-box;
 	}
 	
-	.container{
-	height: 100vh;
-	width: 100vw;
+	body{
+	height:100vh;
+	width:100vw;
 	background-image: url('https://img.freepik.com/premium-photo/colorful-grunge-abstract-minimal-background_250469-4315.jpg');
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
+	}
+	
+	.container{
+	height: 20vh;
+	width: 100vw;
+
 	}
 	
 	.navbar{
@@ -32,6 +38,7 @@
 	align-items: center;
 	justify-content: space-between;
 	}
+	
 	li{
 	list-style: none;
 	display: inline-block;
@@ -49,8 +56,6 @@
 	}
 	
 	.main{
-		height: 90vh;
-		width: 100vw;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -77,8 +82,6 @@
 				<li><a href="<%=request.getContextPath() %>/HomePage.jsp">Home</a></li>
 				<li><a href="<%=request.getContextPath() %>/addAccountant.jsp">Add Accountant</a></li>
 				<li><a href="<%=request.getContextPath() %>/listAccountant.jsp">List Accountant</a></li>
-				<li><a href="<%=request.getContextPath() %>/updateAccountants.jsp">Update</a></li>
-				<li><a href="<%=request.getContextPath() %>/deleteAccountant.jsp">Delete</a></li>
 				<li><form action="<%=request.getContextPath() %>/loginAuthentication?action=logout" method="post">
 						<input type="hidden" name="logout" />
 						<button class="btn">logout</button>
@@ -86,34 +89,10 @@
 			</ul>
 		</div>
 		<div class="main">
-			<br/>
-		<% myConn mycon = new myConn();
-		try{
-			
-			Connection con = mycon.getConn();
-			Statement st = con.createStatement();				
-			ResultSet rs = st.executeQuery("select * from accountants;");	
-			out.println("<h1>" + "List Of Accountants"+ "</h1>");
-			out.println("<table>");	
-			out.println("<tr><td> ID </td><td> NAME </td><td> EMAIL </td><td> CONTACT </td><td> USERNAME </td><td> PASSWORD </td></tr>");
-			while(rs.next()) {
-				String id = rs.getString("id");
-				 out.println("<tr><td>" + rs.getInt("id") + "</td>");
-				 out.println("<td>" + rs.getString("name")+ "</td>");
-				 out.println("<td>" + rs.getString("email")+ "</td>");
-				 out.println("<td>" + rs.getString("contact")+ "</td>");
-				 out.println("<td>" + rs.getString("username")+ "</td>");
-				 out.println("<td>" + rs.getString("password")+ "</td>");	
-				 out.println("<td><a href=CRUDAccountant?id="+id+"&action=deleteAccountant>Delete</a></td></tr>");
-			}
-			out.println("</table>");
-			st.close();
-			con.close();
-			}
-			catch(Exception e) {
-				e.printStackTrace();
-		 	}
-		%>
+			<h1>LIST ACCOUNTANT</h1>
+			<form action="<%=request.getContextPath()%>/CRUDAccountant?action=listAccountant" method="post">
+				<button class="btn">Show data</button>
+			</form>
 			
 		</div>
 	</div>
