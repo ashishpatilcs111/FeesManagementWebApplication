@@ -48,11 +48,6 @@ public class CRUDAccountant extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
 		//JDBC connection object
-
-		
-		if(request.getSession().getAttribute("username")== null) {
-			request.getRequestDispatcher("index.jsp").forward(request, response);
-		}
 		myConn mycon = new myConn();
 		Connection con;
 		response.setContentType("text/html");	
